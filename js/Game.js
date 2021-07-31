@@ -40,11 +40,16 @@ class Game {
     - If match, add the 'chosen' CSS class to the selected letter's keyboard button, call the showMatchedLetter() method on the phrase, and then call the checkForWin() method. 
     - If the player has won the game, also call the gameOver() method. */
 
-    handleInteraction(){
-        letter = checkLetter();
-        document.querySelectorAll(`.letter ${letter}`).disabled = true;
+    handleInteraction(e){
+        e.target.disabled = true;
+        phrase.showMatchedLetter(e.target.textContent);
+        console.log(e.target.textContent);
     };
 }
 
 const game = new Game();
 game.startGame();
+
+qwerty.addEventListener('click', (e) => {
+    game.handleInteraction(e);
+});
