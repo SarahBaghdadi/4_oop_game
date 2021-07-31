@@ -44,8 +44,17 @@ class Game {
             checkForWin();
         } else {
             e.target.className = 'key wrong';
-            removeLife();
+            this.removeLife();
         };
+    };
+
+    removeLife(){
+        const removeHeart = document.querySelectorAll('.tries img')[this.missed];
+        removeHeart.src = 'images/lostHeart.png';
+        this.missed ++;
+        if (this.missed == 5) {
+            gameOver();
+        }
     };
 }
 
