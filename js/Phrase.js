@@ -36,5 +36,3 @@ class Phrase {
         matches.forEach(x => x.className = `show letter ${letter}`);
     }
 }
-
-const phrase = new Phrase('Sarah');

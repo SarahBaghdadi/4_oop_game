@@ -42,7 +42,7 @@ class Game {
 
     handleInteraction(e){
         e.target.disabled = true;
-        phrase.showMatchedLetter(e.target.textContent);
+        this.activePhrase.showMatchedLetter(e.target.textContent);
         console.log(e.target.textContent);
     };
 }
