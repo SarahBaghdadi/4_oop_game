@@ -29,7 +29,7 @@ class Phrase {
         let html = '';
         console.log(this.letters);
         this.letters.forEach((letter) => {
-           html += `<li class="hide letter ${letter}"></li>`
+           html += `<li class="hide letter ${letter}">${letter}</li>`
         });
         listElement.innerHTML = html;
     };
