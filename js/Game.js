@@ -41,7 +41,7 @@ class Game {
         if (this.activePhrase.checkLetter(e.target.textContent)) {
             e.target.className = 'key chosen';
             this.activePhrase.showMatchedLetter(e.target.textContent);
-            checkForWin();
+            this.checkForWin();
         } else {
             e.target.className = 'key wrong';
             this.removeLife();
@@ -54,6 +54,12 @@ class Game {
         this.missed ++;
         if (this.missed == 5) {
             gameOver();
+        }
+    };
+
+    checkForWin(){
+        if (document.querySelectorAll('.hide').length == 0) {
+            console.log('win');
         }
     };
 }
