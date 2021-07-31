@@ -3,7 +3,7 @@
  * app.js */
 
 
-const game = new Game();
+const game = new Game(); // This line.
 
 // Start button starts game.
 document.querySelector('#btn__reset').addEventListener('click', (e) => {

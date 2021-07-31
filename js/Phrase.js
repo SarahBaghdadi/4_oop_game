@@ -15,7 +15,11 @@ class Phrase {
         let listElement = document.querySelector('#phrase ul'); 
         let html = '';
         this.letters.forEach((letter) => {
-           html += `<li class="hide letter ${letter}">${letter}</li>`
+            if (letter !== ' ') {
+                html += `<li class="hide letter ${letter}">${letter}</li>`
+            } else {
+                html += '<br>'
+            }
         });
         listElement.innerHTML = html;
     };
