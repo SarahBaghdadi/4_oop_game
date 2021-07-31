@@ -73,5 +73,11 @@ class Game {
             document.querySelector('h1').textContent = `Better luck next time!`;
             overlay.className = 'lose';
         }
+        document.querySelector('#phrase ul').innerHTML = '';
+        document.querySelectorAll('.key').forEach(x => x.className = 'key');
+        document.querySelectorAll('.key').forEach(x => x.disabled = false);
+        const replaceHeart = document.querySelectorAll('.tries img');
+        replaceHeart.forEach(x => x.src = 'images/liveHeart.png');
+        this.missed = 0;
     };
 }
