@@ -22,17 +22,16 @@ class Phrase {
 
     // Checks to see if the letter selected by the player matches a letter in the phrase.
     checkLetter(letter){
-        if (this.letters.includes(letter) ) {
+        if (this.letters.includes(letter) ) { 
             return letter;
         } else {
             return false;
-        }   
+        }
     }
 
     // Reveals the letter(s) on the board that match the player's selection.
     showMatchedLetter(letter){
-        let match = this.checkLetter(letter);
-        let matches = document.querySelectorAll(`.hide.letter.${match}`);
+        let matches = document.querySelectorAll(`.hide.letter.${letter}`);
         matches.forEach(x => x.className = `show letter ${letter}`);
     }
 }
