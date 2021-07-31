@@ -32,14 +32,15 @@ class Game {
 
     // Disable keyboard button when used. If match, add the 'chosen' class, showMatchedLetter(), and checkForWin(). If no match, add the 'wrong' class, call removeLife(). 
 
-    handleInteraction(e){
-        e.target.disabled = true;
-        if (this.activePhrase.checkLetter(e.target.textContent)) {
-            e.target.className = 'key chosen';
-            this.activePhrase.showMatchedLetter(e.target.textContent);
+    handleInteraction(letter){
+        let key = document.querySelector(`.key.${letter}`);
+        key.disabled = true;
+        if (this.activePhrase.checkLetter(letter)) {
+            key.className = 'key chosen';
+            this.activePhrase.showMatchedLetter(letter);
             this.checkForWin();
         } else {
-            e.target.className = 'key wrong';
+            key.className = 'key wrong';
             this.removeLife();
         };
     };
