@@ -36,11 +36,11 @@ class Game {
         let key = document.querySelector(`.key.${letter}`);
         key.disabled = true;
         if (this.activePhrase.checkLetter(letter)) {
-            key.className = 'key chosen';
+            key.classList.add('chosen');
             this.activePhrase.showMatchedLetter(letter);
             this.checkForWin();
         } else {
-            key.className = 'key wrong';
+            key.classList.add('wrong');
             this.removeLife();
         };
     };
