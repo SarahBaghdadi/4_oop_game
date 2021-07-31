@@ -22,7 +22,6 @@ class Game {
     startGame(){
         document.getElementById('overlay').style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
-        console.log(this.activePhrase);
         this.activePhrase.addPhraseToDisplay(this.activePhrase);
     };
 
@@ -32,18 +31,21 @@ class Game {
         return this.phrases[randomNumber];
     };
 
-    // handleInteraction
-    /* 
-    - Disables the selected letter’s onscreen keyboard button.
-    - Checks to see if the button clicked by the player matches a letter in the phrase
-    - If no match, add the 'wrong' CSS class to the selected letter's keyboard button and call the removeLife() method.
-    - If match, add the 'chosen' CSS class to the selected letter's keyboard button, call the showMatchedLetter() method on the phrase, and then call the checkForWin() method. 
-    - If the player has won the game, also call the gameOver() method. */
+    // handleInteraction - Disable the keyboard button.
+    // If match, add the 'chosen' class, call showMatchedLetter(), and call checkForWin(). 
+    // If no match, add the 'wrong' class, call removeLife().
+    // If the player has won the game, also call the gameOver() method.
 
     handleInteraction(e){
         e.target.disabled = true;
-        this.activePhrase.showMatchedLetter(e.target.textContent);
-        console.log(e.target.textContent);
+        if (this.activePhrase.checkLetter(e.target.textContent)) {
+            e.target.className = 'key chosen';
+            this.activePhrase.showMatchedLetter(e.target.textContent);
+            checkForWin();
+        } else {
+            e.target.className = 'key wrong';
+            removeLife();
+        };
     };
 }
 
