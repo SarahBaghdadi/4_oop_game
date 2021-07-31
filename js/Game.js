@@ -9,8 +9,8 @@ class Game {
             new Phrase('Alex'),
             new Phrase('Launchy'), 
             new Phrase('Hannah'),
-            new Phrase('Beans are delicious'),
-            new Phrase('Super cool beans')
+            new Phrase('Beans'),
+            new Phrase('Super cool')
         ]
         this.activePhrase = null;  
     }
@@ -53,22 +53,25 @@ class Game {
         removeHeart.src = 'images/lostHeart.png';
         this.missed ++;
         if (this.missed == 5) {
-            gameOver();
+            this.gameOver('loss');
         }
     };
 
     checkForWin(){
         if (document.querySelectorAll('.hide').length == 0) {
-            console.log('win');
+            this.gameOver('win')
+        }
+    };
+
+    gameOver(outcome){
+        let overlay = document.getElementById('overlay')
+        overlay.style.display = 'flex';
+        if (outcome == 'win') {
+            document.querySelector('h1').textContent = `You're a winner!`;
+            overlay.className = 'win';
+        } else {
+            document.querySelector('h1').textContent = `Better luck next time!`;
+            overlay.className = 'lose';
         }
     };
 }
-
-const game = new Game();
-game.startGame();
-
-qwerty.addEventListener('click', (e) => {
-    if (e.target.className == 'key') {
-        game.handleInteraction(e);
-    }
-});
