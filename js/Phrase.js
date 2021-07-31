@@ -10,7 +10,7 @@ class Phrase {
         this.letters = this.phrase.split('');
     }
 
-    // Adds letter placeholders to the display when the game starts
+    // Add letter placeholders to the display when the game starts
     addPhraseToDisplay(){
         let listElement = document.querySelector('#phrase ul'); 
         let html = '';
@@ -20,7 +20,7 @@ class Phrase {
         listElement.innerHTML = html;
     };
 
-    // Checks to see if the letter selected by the player matches a letter in the phrase.
+    // Check to see if the letter selected by the player matches a letter in the phrase.
     checkLetter(letter){
         if (this.letters.includes(letter) ) { 
             return letter;
@@ -29,9 +29,9 @@ class Phrase {
         }
     }
 
-    // Reveals the letter(s) on the board that match the player's selection.
+    // Reveal the letter(s) on the board that match the player's selection.
     showMatchedLetter(letter){
         let matches = document.querySelectorAll(`.hide.letter.${letter}`);
-        matches.forEach(x => x.className = `show letter ${letter}`);
+        matches.forEach(match => match.className = `show letter ${letter}`);
     }
 }

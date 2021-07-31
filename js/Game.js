@@ -3,22 +3,21 @@
  * Game.js */
 
 class Game {
+
+    // Game constructor
     constructor(){
         this.missed = 0;
         this.phrases = [
-            new Phrase('Alex'),
-            new Phrase('Launchy'), 
-            new Phrase('Hannah'),
-            new Phrase('Beans'),
-            new Phrase('Super cool')
+            new Phrase('Oregano and radish stir fry'),
+            new Phrase('Napolitana and vermicelli penne'), 
+            new Phrase('Orange and cardamom mousse'),
+            new Phrase('Bran and honey biscuits'),
+            new Phrase('Chard and sweetcorn risotto')
         ]
         this.activePhrase = null;  
     }
 
-    // Hides the start screen overlay, 
-    // Calls the getRandomPhrase() method, 
-    // Sets the activePhrase property with the chosen phrase. 
-    // Adds that phrase to the board by calling the addPhraseToDisplay() method on the activePhrase property.
+    // Hide the start screen, choose a phrase, add the phrase to the board.
     startGame(){
         document.getElementById('overlay').style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
@@ -31,10 +30,7 @@ class Game {
         return this.phrases[randomNumber];
     };
 
-    // handleInteraction - Disable the keyboard button.
-    // If match, add the 'chosen' class, call showMatchedLetter(), and call checkForWin(). 
-    // If no match, add the 'wrong' class, call removeLife().
-    // If the player has won the game, also call the gameOver() method.
+    // Disable keyboard button when used. If match, add the 'chosen' class, showMatchedLetter(), and checkForWin(). If no match, add the 'wrong' class, call removeLife(). 
 
     handleInteraction(e){
         e.target.disabled = true;
@@ -48,6 +44,7 @@ class Game {
         };
     };
 
+    // Remove a life from the board, update count, check for loss.
     removeLife(){
         const removeHeart = document.querySelectorAll('.tries img')[this.missed];
         removeHeart.src = 'images/lostHeart.png';
@@ -57,12 +54,14 @@ class Game {
         }
     };
 
+    // Check for win.
     checkForWin(){
         if (document.querySelectorAll('.hide').length == 0) {
             this.gameOver('win')
         }
     };
 
+    // Display win or lose screen, reset game.
     gameOver(outcome){
         let overlay = document.getElementById('overlay')
         overlay.style.display = 'flex';

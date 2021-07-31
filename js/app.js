@@ -5,10 +5,12 @@
 
 const game = new Game();
 
+// Start button starts game.
 document.querySelector('#btn__reset').addEventListener('click', (e) => {
     game.startGame();
 });
 
+// Clicking on a letter key calls handle interaction.
 qwerty.addEventListener('click', (e) => {
     if (e.target.className == 'key') {
         game.handleInteraction(e);
