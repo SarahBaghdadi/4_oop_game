@@ -24,8 +24,10 @@ qwerty.addEventListener('click', (e) => {
 
 // Pressing a keyboard letter key calls handleInteraction().
 window.addEventListener("keydown", (e) => {
-    let letter = e.key;
-    game.handleInteraction(letter);
-    // Cancel the default action to avoid it being handled twice
-    e.preventDefault();
-  }, true);
+    if (/^[a-z]$/i.test(e.key)) {
+        let letter = e.key;
+        game.handleInteraction(letter);
+        // Cancel the default action to avoid it being handled twice
+        e.preventDefault();
+    }
+}, true);
