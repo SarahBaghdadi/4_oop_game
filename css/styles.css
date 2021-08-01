@@ -8,7 +8,7 @@
   --color-lose: #D94545;
   --color-start: #5b85b7;
   --color-neutral: #445069;
-  --color-neutral-light: #D2D2D2;
+  --color-neutral-light: #fff36c;
   --color-keys: #37474F;
   --color-keys-light: #E5E5E5;
   --font-size-large: 60px;
@@ -42,6 +42,7 @@ h2 {
   margin: 0;
 }
 
+
 h1 {
   font-size: 30px;
 }
@@ -62,13 +63,20 @@ button {
 
 #btn__reset {
 	width: 200px;
+  height:  50px;
 	margin: 0 auto;
+  font-weight: bold;
+  background: #78CF82;
+}
+
+#btn__reset:hover {
+  background: #a3e6ab;
 }
 
 .main-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   height: 100%;
   max-height: 900px;
   text-align: center;
@@ -176,7 +184,8 @@ button {
 }
 
 .title {
-  color: #FFF;
+  font-style: italic;
+  color: pink;
 }
 
 .start {
