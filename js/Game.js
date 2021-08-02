@@ -75,8 +75,10 @@ class Game {
         }
         document.querySelector('#phrase ul').innerHTML = '';
         let keys = document.querySelectorAll('.key');
-        keys.forEach(key => key.className = `key ${key.textContent}`);
-        keys.forEach(key => key.disabled = false);
+        keys.forEach(key => {
+            key.className = `key ${key.textContent}`;
+            key.disabled = false;
+        }); 
         const replaceHeart = document.querySelectorAll('.tries img');
         replaceHeart.forEach(x => x.src = 'images/liveHeart.png');
         this.missed = 0;
