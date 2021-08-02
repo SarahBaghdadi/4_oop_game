@@ -2,20 +2,16 @@
  * Project 4 - OOP Game App
  * app.js */
 
+// Game variable 
+let game; 
 
-let game; // This line.
-
-// Add class names to letter keys
-let keys = document.querySelectorAll('.key');
-keys.forEach(key => key.classList.add(`${key.textContent}`))
-
-// Start button starts game.
+// Start button starts game
 document.querySelector('#btn__reset').addEventListener('click', (e) => {
-    game = new Game(); // This line.
+    game = new Game(); 
     game.startGame();
 });
 
-// Clicking on a letter key calls handleInteraction().
+// Clicking on a letter key calls handleInteraction()
 qwerty.addEventListener('click', (e) => {
     let letter = e.target.textContent;
     if (e.target.classList.contains('key')) {
@@ -23,7 +19,7 @@ qwerty.addEventListener('click', (e) => {
     }
 });
 
-// Pressing a keyboard letter key calls handleInteraction().
+// Pressing a keyboard letter key calls handleInteraction()
 window.addEventListener("keydown", (e) => {
     if (/^[a-z]$/i.test(e.key) && game) {
         let letter = e.key;

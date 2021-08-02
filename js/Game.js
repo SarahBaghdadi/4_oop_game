@@ -22,6 +22,11 @@ class Game {
         document.getElementById('overlay').style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay(this.activePhrase);
+        let keys = document.querySelectorAll('.key');
+        keys.forEach(key => {
+            key.className = `key ${key.textContent}`;
+            key.disabled = false;
+        }); 
     };
 
     // Returns a random phrase from the array.
@@ -74,11 +79,6 @@ class Game {
             overlay.className = 'lose';
         }
         document.querySelector('#phrase ul').innerHTML = '';
-        let keys = document.querySelectorAll('.key');
-        keys.forEach(key => {
-            key.className = `key ${key.textContent}`;
-            key.disabled = false;
-        }); 
         const replaceHeart = document.querySelectorAll('.tries img');
         replaceHeart.forEach(x => x.src = 'images/liveHeart.png');
         this.missed = 0;
