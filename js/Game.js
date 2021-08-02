@@ -19,9 +19,10 @@ class Game {
 
     // Hide the start screen, choose a phrase, add the phrase to the board.
     startGame(){
+        this.missed = 0;
         document.getElementById('overlay').style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
-        this.activePhrase.addPhraseToDisplay(this.activePhrase);
+        this.activePhrase.addPhraseToDisplay();
         let keys = document.querySelectorAll('.key');
         keys.forEach(key => {
             key.className = `key ${key.textContent}`;
@@ -54,7 +55,9 @@ class Game {
     removeLife(){
         const removeHeart = document.querySelectorAll('.tries img')[this.missed];
         removeHeart.src = 'images/lostHeart.png';
-        this.missed ++;
+        if (this.missed < 5) {
+            this.missed ++;
+        }
         if (this.missed == 5) {
             this.gameOver('loss');
         }
@@ -81,6 +84,6 @@ class Game {
         document.querySelector('#phrase ul').innerHTML = '';
         const replaceHeart = document.querySelectorAll('.tries img');
         replaceHeart.forEach(x => x.src = 'images/liveHeart.png');
-        this.missed = 0;
+        game = undefined; 
     };
 }
