@@ -3,7 +3,7 @@
  * app.js */
 
 
-const game = new Game(); // This line.
+let game; // This line.
 
 // Add class names to letter keys
 let keys = document.querySelectorAll('.key');
@@ -11,6 +11,7 @@ keys.forEach(key => key.classList.add(`${key.textContent}`))
 
 // Start button starts game.
 document.querySelector('#btn__reset').addEventListener('click', (e) => {
+    game = new Game(); // This line.
     game.startGame();
 });
 
