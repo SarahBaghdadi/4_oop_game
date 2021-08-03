@@ -40,15 +40,19 @@ class Game {
 
     handleInteraction(letter){
         let key = document.querySelector(`.key.${letter}`);
-        key.disabled = true;
-        if (this.activePhrase.checkLetter(letter)) {
-            key.classList.add('chosen');
-            this.activePhrase.showMatchedLetter(letter);
-            this.checkForWin();
-        } else {
-            key.classList.add('wrong');
-            this.removeLife();
-        };
+        if (!key.disabled) {
+            key.disabled = true;
+            if (this.activePhrase.checkLetter(letter)) {
+                key.classList.add('chosen');
+                this.activePhrase.showMatchedLetter(letter);
+                if (this.checkForWin()){
+                    this.gameOver('win');
+                }
+            } else {
+                key.classList.add('wrong');
+                this.removeLife();
+            };
+        }
     };
 
     // Remove a life from the board, update count, check for loss.
@@ -66,7 +70,9 @@ class Game {
     // Check for win.
     checkForWin(){
         if (document.querySelectorAll('.hide').length == 0) {
-            this.gameOver('win')
+            return true;
+        } else {
+            return false;
         }
     };
 
