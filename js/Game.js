@@ -17,27 +17,25 @@ class Game {
         this.activePhrase = null;  
     }
 
-    // Hide the start screen, choose a phrase, add the phrase to the board.
+    // startGame() Sets missed to 0, hides the start screen, calls getRandomPhrase() & addPhraseToDisplay()to choose a phrase and add it to the board
     startGame(){
         this.missed = 0;
         document.getElementById('overlay').style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
-        this.activePhrase.addPhraseToDisplay();
-        let keys = document.querySelectorAll('.key');
-        keys.forEach(key => {
-            key.className = `key ${key.textContent}`;
-            key.disabled = false;
-        }); 
+        this.activePhrase.addPhraseToDisplay(); 
+        resetKeys();
     };
 
-    // Returns a random phrase from the array.
+    // getRandomPhrase() Returns a random phrase from the array.
     getRandomPhrase(){
         let randomNumber = Math.floor(Math.random() * this.phrases.length);
         return this.phrases[randomNumber];
     };
 
-    // Disable keyboard button when used. If match, add the 'chosen' class, showMatchedLetter(), and checkForWin(). If no match, add the 'wrong' class, call removeLife(). 
-
+    // handleInteraction() Handles most of the game interaction:
+    // - Disables a keyboard button when used. 
+    // - If letter is a match, adds the 'chosen' class to the onscreen key, calls showMatchedLetter(), and calls checkForWin(). 
+    // - If no match, adds the 'wrong' class, and calls removeLife(). 
     handleInteraction(letter){
         let key = document.querySelector(`.key.${letter}`);
         if (!key.disabled) {
@@ -55,7 +53,7 @@ class Game {
         }
     };
 
-    // Remove a life from the board, update count, check for loss.
+    // removeLife() Removes a life from the board, updates missed integer, checks for loss.
     removeLife(){
         const removeHeart = document.querySelectorAll('.tries img')[this.missed];
         removeHeart.src = 'images/lostHeart.png';
@@ -67,7 +65,7 @@ class Game {
         }
     };
 
-    // Check for win.
+    // checkForWin() Checks for win
     checkForWin(){
         if (document.querySelectorAll('.hide').length == 0) {
             return true;
@@ -76,7 +74,7 @@ class Game {
         }
     };
 
-    // Display win or lose screen, reset game.
+    // gameOver Displays win or lose screen, resets the game: removes old phrase, resets onscreen key class names, replaces life hearts, set game object to undefined
     gameOver(outcome){
         let overlay = document.getElementById('overlay')
         overlay.style.display = 'flex';
@@ -87,9 +85,10 @@ class Game {
             document.querySelector('h1').textContent = `Better luck next time!`;
             overlay.className = 'lose';
         }
-        document.querySelector('#phrase ul').innerHTML = '';
-        const replaceHeart = document.querySelectorAll('.tries img');
-        replaceHeart.forEach(x => x.src = 'images/liveHeart.png');
+        document.querySelector('#phrase ul').innerHTML = ''; 
+        resetKeys(); 
+        const replaceHeart = document.querySelectorAll('.tries img'); 
+        replaceHeart.forEach(heart => heart.src = 'images/liveHeart.png'); 
         game = undefined; 
     };
 }
